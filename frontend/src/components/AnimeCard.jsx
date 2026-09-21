@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 
 import './AnimeCard.css'
 
-function AnimeCard({ title = "sample Title", year = "N/A", description = "sample desc", image, rating = 0 }){
+
+function AnimeCard({id, title = "sample Title", year = "N/A", description = "sample desc", image, rating = 0 }){
     function onFavoriteClick(){
         alert("fav clicked " +title)
     }
   return (
-    <div className="anime-card">
+    <div className="anime-card" id={id}>
       <img className="anime-card__image" src={image} alt={title} />
 
       <div className="anime-card__body">
