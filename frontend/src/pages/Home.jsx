@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import '../components/AnimeCard.css'
 import AnimeCard from '../components/AnimeCard'
 
@@ -7,7 +7,7 @@ function Home() {
   // useState("") = a value React remembers between renders. It hands back a pair:
   // [the value right now, the function to change it]. "" is the starting value.
   // Never do searchQuery = "x" — only setSearchQuery("x") tells React to redraw.
-  const[searchQuery, setSearchQuery] = useState("")
+  const [searchQuery, setSearchQuery] = useState("")
 
   const anime = [
     { id: 1, title: "Love is war", year: 2026, description: "description sample", rating: 3 },
@@ -21,28 +21,30 @@ function Home() {
   }
   return (
     <>
-      <div className='home'>
-        <form onSubmit={handleSearch} className="searchForm">
-          <input 
-          type="text" 
-          placeholder='Search for Anime...' 
-          className="search-input"
-          value={searchQuery}
-          onChange={(e)=>setSearchQuery(e.target.value)}>
-          </input>
-          <button type="submit" className="search-button">Search</button>
-        </form>
-      </div>
       <div className="anime-card-list">
-        {anime.map((item) => 
-          item.title.toLowerCase().startsWith(searchQuery) && 
-          (<AnimeCard 
-            key={item.id} 
-            title={item.title} 
-            year={item.year} 
-            description={item.description} 
-            rating={item.rating} />)
-        )}
+        <div className='home'>
+          <form onSubmit={handleSearch} className="searchForm">
+            <input
+              type="text"
+              placeholder='Search for Anime...'
+              className="search-input"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}>
+            </input>
+            <button type="submit" className="search-button">Search</button>
+          </form>
+        </div>
+        <div className="anime-card-list">
+          {anime.map((item) =>
+            item.title.toLowerCase().startsWith(searchQuery) &&
+            (<AnimeCard
+              key={item.id}
+              title={item.title}
+              year={item.year}
+              description={item.description}
+              rating={item.rating} />)
+          )}
+        </div>
       </div>
     </>
   )

@@ -1,17 +1,18 @@
 import { useState } from 'react'
 import './App.css'
-import AnimeCard from './components/AnimeCard'
 import Home from './pages/Home'
+import {Routes, Route} from "react-router-dom"
+import Favorites from './pages/Favorites'
 
 function App() {
 
   return(
-    <div className="anime-card-list">
-      {/* <AnimeCard title="anime" description="A" year={2026} rating={4.3}/>
-      <AnimeCard title="sample" description="B" year={2026} rating={2.3}/> */}
-      <Home />
-
-    </div>
+    <main className="main-content">
+      <Routes>
+        <Route path="/" element={<Home/>}></Route>
+        <Route path="/favorites" element={<Favorites/>}></Route>
+      </Routes>
+    </main>
   )
 }
 
