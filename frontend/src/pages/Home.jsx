@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import '../components/AnimeCard.css'
+import './Home.css'
 import AnimeCard from '../components/AnimeCard'
 
 
@@ -21,30 +21,28 @@ function Home() {
   }
   return (
     <>
+      <div className='home'>
+        <form onSubmit={handleSearch} className="searchForm">
+          <input
+            type="text"
+            placeholder='Search for Anime...'
+            className="search-input"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}>
+          </input>
+          <button type="submit" className="search-button">Search</button>
+        </form>
+      </div>
       <div className="anime-card-list">
-        <div className='home'>
-          <form onSubmit={handleSearch} className="searchForm">
-            <input
-              type="text"
-              placeholder='Search for Anime...'
-              className="search-input"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}>
-            </input>
-            <button type="submit" className="search-button">Search</button>
-          </form>
-        </div>
-        <div className="anime-card-list">
-          {anime.map((item) =>
-            item.title.toLowerCase().startsWith(searchQuery) &&
-            (<AnimeCard
-              key={item.id}
-              title={item.title}
-              year={item.year}
-              description={item.description}
-              rating={item.rating} />)
-          )}
-        </div>
+        {anime.map((item) =>
+          item.title.toLowerCase().startsWith(searchQuery) &&
+          (<AnimeCard
+            key={item.id}
+            title={item.title}
+            year={item.year}
+            description={item.description}
+            rating={item.rating} />)
+        )}
       </div>
     </>
   )
