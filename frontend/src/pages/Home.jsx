@@ -14,12 +14,12 @@ function Home({ addFavorite, favorites }) {
   const [anime, setAnime] = useState([])
 
 
-useEffect(() => {
-  getTopAnime()
-    .then(data => setAnime(data))
-    .catch(err => setError(err.message))
-    .finally(() => setLoading(false))
-}, [])
+  useEffect(() => {
+    getTopAnime()
+      .then(data => setAnime(data))
+      .catch(err => setError(err.message))
+      .finally(() => setLoading(false))
+  }, [])
 
 
 
@@ -47,19 +47,24 @@ useEffect(() => {
           <button type="submit" className="search-button">Search</button>
         </form>
       </div>
-      <div className="anime-card-list">
-        {anime.map((item) =>
-          item.title.toLowerCase().startsWith(searchQuery.toLowerCase()) &&
-          (<AnimeCard
-            key={item.malId}
-            title={item.title}
-            image={item.imageUrl}
-            date={item.startDate}
-            description={"SAMPLE PLACEHOLDER DESCRIPTION TODO"}
-            rating={item.score}
-            onFavoriteClick={()=> addFavorite(item)} />)
-        )}
-      </div>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
+      {!loading && !error && (
+        <div className="anime-card-list">
+          {anime.map((item) =>
+            item.title.toLowerCase().startsWith(searchQuery.toLowerCase()) &&
+            (<AnimeCard
+              key={item.malId}
+              title={item.title}
+              image={item.imageUrl}
+              date={item.startDate}
+              description={"SAMPLE PLACEHOLDER DESCRIPTION TODO"}
+              rating={item.score}
+              onFavoriteClick={() => addFavorite(item)} />)
+          )}
+        </div>
+      )}
+
     </>
   )
 }
