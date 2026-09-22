@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { getTopAnime, searchAnime } from '../services/api'
 import './Home.css'
 import AnimeCard from '../components/AnimeCard'
 
@@ -8,12 +9,19 @@ function Home() {
   // [the value right now, the function to change it]. "" is the starting value.
   // Never do searchQuery = "x" — only setSearchQuery("x") tells React to redraw.
   const [searchQuery, setSearchQuery] = useState("")
+  const [anime, setAnime] = useState([])
 
-  const anime = [
-    { id: 1, title: "Sample 1", year: 6767, description: "description sample", rating: 3.67 },
-    { id: 2, title: "Love is war", year: 2023, description: "dawd sample", rating: 4.99 },
-    { id: 3, title: "bruuH", year: 1982, description: "a 2323", rating: 5 }
-  ]
+  useEffect(() => {
+    getTopAnime().then(data=>console.log(data));
+    getTopAnime().then(data=>setAnime(data));
+  }, [])
+
+
+  // const anime = [
+  //   { id: 1, title: "Sample 1", year: 6767, description: "description sample", rating: 3.67 },
+  //   { id: 2, title: "Love is war", year: 2023, description: "dawd sample", rating: 4.99 },
+  //   { id: 3, title: "bruuH", year: 1982, description: "a 2323", rating: 5 }
+  // ]
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -35,13 +43,14 @@ function Home() {
       </div>
       <div className="anime-card-list">
         {anime.map((item) =>
-          item.title.toLowerCase().startsWith(searchQuery) &&
+          item.title.toLowerCase().startsWith(searchQuery.toLowerCase()) &&
           (<AnimeCard
-            key={item.id}
+            key={item.malId}
             title={item.title}
-            year={item.year}
-            description={item.description}
-            rating={item.rating} />)
+            image={item.imageUrl}
+            date={item.startDate}
+            description={"SAMPLE PLACEHOLDER DESCRIPTION TODO"}
+            rating={item.score} />)
         )}
       </div>
     </>
