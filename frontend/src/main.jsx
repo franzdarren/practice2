@@ -17,9 +17,9 @@ import Practice10 from './PRACTICE_FOLDER/Practice10.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <BrowserRouter>
+    <BrowserRouter>
       <App />
-    </BrowserRouter> */}
+    </BrowserRouter>
     {/* <Practice /> */}
     {/* <Practice2/> */}
     {/* <Practice4/> */}
@@ -27,7 +27,7 @@ createRoot(document.getElementById('root')).render(
     {/* <Practice6/> */}
     {/* <Practice7/ > */}
     {/* <Practice9/ > */}
-    <Practice10/ >
+    {/* <Practice10/ > */}
 
   </StrictMode>,
 )
