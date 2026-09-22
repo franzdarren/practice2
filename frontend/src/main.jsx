@@ -10,7 +10,8 @@ import App from './App.jsx'
 // import Practice3 from './PRACTICE_FOLDER/Practice3.jsx'
 // import Practice4 from './PRACTICE_FOLDER/Practice4.jsx'
 // import Practice5 from './PRACTICE_FOLDER/Practice5.jsx'
-import Practice6 from './PRACTICE_FOLDER/Practice6.jsx'
+// import Practice6 from './PRACTICE_FOLDER/Practice6.jsx'
+import Practice7 from './PRACTICE_FOLDER/Practice7.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -21,7 +22,8 @@ createRoot(document.getElementById('root')).render(
     {/* <Practice2/> */}
     {/* <Practice4/> */}
     {/* <Practice5/> */}
-    <Practice6/>
+    {/* <Practice6/> */}
+    <Practice7/ >
 
   </StrictMode>,
 )
