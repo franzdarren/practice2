@@ -7,13 +7,20 @@ function Home({ addFavorite, favorites }) {
   // useState("") = a value React remembers between renders. It hands back a pair:
   // [the value right now, the function to change it]. "" is the starting value.
   // Never do searchQuery = "x" — only setSearchQuery("x") tells React to redraw.
+
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [searchQuery, setSearchQuery] = useState("")
   const [anime, setAnime] = useState([])
 
-  useEffect(() => {
-    getTopAnime().then(data=>console.log(data));
-    getTopAnime().then(data=>setAnime(data));
-  }, [])
+
+useEffect(() => {
+  getTopAnime()
+    .then(data => setAnime(data))
+    .catch(err => setError(err.message))
+    .finally(() => setLoading(false))
+}, [])
+
 
 
   // const anime = [
