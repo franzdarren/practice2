@@ -1,0 +1,65 @@
+.studentCard {
+    max-width: 420px;
+    margin: 12px auto;
+    padding: 16px 20px;
+    background: #ffffff;
+    border: 1px solid #e3e6ea;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.studentCard:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* h1 is huge by default - tame it down to card-title size */
+.studentName {
+    margin: 0 0 10px 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #1a1d21;
+}
+
+/* age + course sit side by side as small grey pills */
+.studentAge,
+.studentCourse {
+    display: inline-block;
+    margin-right: 8px;
+    padding: 3px 10px;
+    background: #f1f3f5;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    color: #55606b;
+}
+
+.studentCourse {
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* the pass/fail <p> - generic badge styling */
+.studentCard p {
+    display: inline-block;
+    margin: 10px 0 0 0;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    background: #eef0f2;
+    color: #55606b;
+}
+
+/* --- optional: activate these by adding a className in the JSX --- */
+.studentStatus--pass {
+    background: #e6f6ec;
+    color: #1a7f45;
+}
+
+.studentStatus--fail {
+    background: #fdeaea;
+    color: #b42318;
+}
