@@ -3,8 +3,7 @@ import { getTopAnime, searchAnime } from '../services/api'
 import './Home.css'
 import AnimeCard from '../components/AnimeCard'
 
-
-function Home() {
+function Home({ addFavorite, favorites }) {
   // useState("") = a value React remembers between renders. It hands back a pair:
   // [the value right now, the function to change it]. "" is the starting value.
   // Never do searchQuery = "x" — only setSearchQuery("x") tells React to redraw.
@@ -50,7 +49,8 @@ function Home() {
             image={item.imageUrl}
             date={item.startDate}
             description={"SAMPLE PLACEHOLDER DESCRIPTION TODO"}
-            rating={item.score} />)
+            rating={item.score}
+            onFavoriteClick={()=> addFavorite(item)} />)
         )}
       </div>
     </>

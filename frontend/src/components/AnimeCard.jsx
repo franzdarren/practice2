@@ -3,10 +3,12 @@ import React, { useState } from 'react'
 import './AnimeCard.css'
 
 
-function AnimeCard({id, title = "sample Title", image, date = "N/A", description = "sample desc", rating = 0 }){
-    function onFavoriteClick(){
-        alert("fav clicked " +title)
-    }
+function AnimeCard({id, title = "sample Title", image, date = "N/A", description = "sample desc", rating = 0, onFavoriteClick}){
+    // function onFavoriteClick(){
+    //     alert("fav clicked " +title)
+    // }
+
+    
   return (
     <div className="anime-card" id={id}>
       <img className="anime-card__image" src={image} alt={title} />
@@ -17,7 +19,7 @@ function AnimeCard({id, title = "sample Title", image, date = "N/A", description
         <p className="anime-card__description">{description}</p>
 
         <div className="anime-card__rating">★ {rating} / 10</div>
-
+        
         <button onClick={onFavoriteClick}> ♥ </button>
       </div>
 
