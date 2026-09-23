@@ -14,12 +14,13 @@ import App from './App.jsx'
 // import Practice7 from './PRACTICE_FOLDER/Practice7.jsx'
 // import Practice9 from './PRACTICE_FOLDER/Practice9.jsx'
 import Practice10 from './PRACTICE_FOLDER/Practice10.jsx'
+import Practice11 from './PRACTICE_FOLDER/Practice11.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    {/* <BrowserRouter>
       <App />
-    </BrowserRouter>
+    </BrowserRouter> */}
     {/* <Practice /> */}
     {/* <Practice2/> */}
     {/* <Practice4/> */}
@@ -28,6 +29,7 @@ createRoot(document.getElementById('root')).render(
     {/* <Practice7/ > */}
     {/* <Practice9/ > */}
     {/* <Practice10/ > */}
+    <Practice11/ >
 
   </StrictMode>,
 )

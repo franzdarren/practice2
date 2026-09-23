@@ -1,0 +1,116 @@
+/* ---------- layout ---------- */
+.anime-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 20px;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ---------- card ---------- */
+.anime-card {
+    position: relative;          /* anchor for the favorite button */
+    background: #ffffff;
+    border: 1px solid #e4e7eb;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.anime-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
+}
+
+.card-title {
+    margin: 0 0 14px 0;
+    padding-right: 34px;         /* keep text clear of the heart */
+    font-size: 1.15rem;
+    font-weight: 650;
+    color: #1a1d21;
+}
+
+/* ---------- favorite heart (first button in the card) ---------- */
+.anime-card > button:first-child {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 1.45rem;
+    line-height: 1;
+    color: #e5484d;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.anime-card > button:first-child:hover {
+    transform: scale(1.2);
+}
+
+/* ---------- progress text ---------- */
+.anime-card p {
+    margin: 0 0 4px 0;
+    font-size: 0.85rem;
+    color: #55606b;
+}
+
+/* ---------- progress bar ---------- */
+.progress-bar {
+    height: 8px;
+    margin: 10px 0 16px 0;
+    background: #eceff2;
+    border-radius: 999px;
+    overflow: hidden;            /* clips the fill to the rounded ends */
+}
+
+.progress-bar__fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #4f8cff, #6ee7b7);
+    transition: width 0.3s ease;
+}
+
+/* ---------- +/-/ALL controls ---------- */
+.anime-card button[data-testid] {
+    min-width: 38px;
+    height: 34px;
+    margin-right: 8px;
+    padding: 0 12px;
+    border: 1px solid #d5dae0;
+    border-radius: 8px;
+    background: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2b3138;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.anime-card button[data-testid]:hover:not(:disabled) {
+    background: #f3f5f7;
+    border-color: #b9c1ca;
+}
+
+.anime-card button[data-testid]:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* the ALL button - last one in the card, give it emphasis */
+.anime-card > button:last-child {
+    margin-right: 0;
+    border-color: #4f8cff;
+    background: #4f8cff;
+    color: #ffffff;
+}
+
+.anime-card > button:last-child:hover:not(:disabled) {
+    background: #3a76e8;
+    border-color: #3a76e8;
+}
