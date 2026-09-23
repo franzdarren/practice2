@@ -24,7 +24,7 @@ function AnimeCard({ anime }) {
 
     return (
         <div className='anime-card'>
-            <button onClick={ ()=> setFavorited(!favorited)}>{favorited ? "❤︎" : "♡"}</button>
+            <button onClick={() => setFavorited(!favorited)}>{favorited ? "❤︎" : "♡"}</button>
             <h1 className='card-title'>{anime.title}</h1>
             <ProgressBar progress={noOfEpisodesWatched} totalEp={anime.episodes} />
 
@@ -37,16 +37,17 @@ function AnimeCard({ anime }) {
 }
 
 function ProgressBar({ progress, totalEp }) {
+    const percentage = progress / totalEp * 100
     return (
         <div>
             {(progress === totalEp ? <p>Completed!</p> : <p>{progress} / {totalEp}</p>)}
             <p>
-                {(progress / totalEp * 100).toFixed(2)}%
+                {percentage.toFixed(1)}%
             </p>
             <div className='progress-bar'>
                 <div
                     className='progress-bar__fill'
-                    style={{ width: `${(progress / totalEp) * 100}%` }}
+                    style={{ width: `${percentage}%` }}
                 ></div>
             </div>
         </div>
