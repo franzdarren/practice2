@@ -1,40 +1,21 @@
-import {React, useState} from 'react'
-import './Practice13.css'
+import {React, useState, useEffect} from 'react'
+import { getRandomTweets } from '../services/tweetApi'
+import './Practice14.css'
 
 export default function Practice13() {
-    const tweets = [
-        {
-            "id": "t005",
-            "author": { "name": "CSS Wizard", "handle": "flexboxgoblin", "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=flexboxgoblin", "verified": true },
-            "content": "centered a div on the first try today. i do not know what i did. i am afraid to refresh.",
-            "createdAt": "2026-09-23T04:18:00Z",
-            "likes": 33921, "retweets": 11203, "replies": 842, "image": null
-        },
-        {
-            "id": "t006",
-            "author": { "name": "Anime Screencaps", "handle": "framesofanime", "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=framesofanime", "verified": false },
-            "content": "no context frame. rate the composition.",
-            "createdAt": "2026-09-23T03:02:00Z",
-            "likes": 9210, "retweets": 2011, "replies": 156, "image": "/images/frame.svg"
-        },
-        {
-            "id": "t007",
-            "author": { "name": "Darren", "handle": "franzdarren", "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=franzdarren", "verified": false },
-            "content": "been up 24 hours building a react app at work while pretending to study. this is fine.",
-            "createdAt": "2026-09-23T02:44:00Z",
-            "likes": 412, "retweets": 38, "replies": 61, "image": null
-        },
-        {
-            "id": "t008",
-            "author": { "name": "API Status Bot", "handle": "apidownbot", "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=apidownbot", "verified": true },
-            "content": "ALERT: upstream returning 504 on all uncached endpoints. cached responses still serving. we are aware.",
-            "createdAt": "2026-09-23T01:30:00Z",
-            "likes": 88, "retweets": 214, "replies": 501, "image": null
-        }
-    ]
+    const [tweets, setTweets] = useState([])
+    const [loading, setLoading] = useState(true)
+    
+  useEffect(() => {
+    getRandomTweets(5)
+      .then(data => setTweets(data))
+      .catch(err => setError(err.message))
+      .finally(() => setLoading(false))
+  }, [])
 
     return (
         <>
+            {loading && (<LoadingScreen />)}
             {tweets.map((tweet) =>
                 <TweetCard key={tweet.id} tweet={tweet}/>
             )}
@@ -55,6 +36,12 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
 
 function formatDate(isoString) {
     return dateFormatter.format(new Date(isoString)) + " UTC"
+}
+
+function LoadingScreen(){
+    return(
+        <h3>fetching tweets... </h3>
+    )
 }
 
 function TweetCard({ tweet }) {
@@ -87,7 +74,7 @@ function TweetCard({ tweet }) {
 
                 <div className='tweet-stats'>
                     <span className='stat stat--reply'><span className='stat__icon'>🗨</span>{tweet.replies}</span>
-                    <span className='stat stat--retweet'><span className='stat__icon'>🔁</span>{tweet.retweets}</span>
+                    <span className='stat stat--retweet'><span className='stat__icon'>RT</span>{tweet.retweets}</span>
                     <span onClick={()=> liked ? setLiked(false) : setLiked(true)} className='stat stat--like'><span className='stat__icon'>♥</span>{liked ? tweet.likes+1 : tweet.likes}</span>
                 </div>
             </div>
@@ -95,4 +82,6 @@ function TweetCard({ tweet }) {
     )
 }
 
-
+function header(){
+    
+}
